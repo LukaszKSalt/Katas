@@ -1,5 +1,10 @@
 package se.salt.katas;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 /**
  * Task
  * In this simple Kata your task is to create a function that turns a string into a Mexican Wave.
@@ -17,4 +22,15 @@ package se.salt.katas;
  */
 
 public class MexicanWave {
+    public static List<String> makeMexicanWave(String m) {
+        if (m == null) {
+            throw new IllegalArgumentException("String has to be provided");
+        }
+        return IntStream.range(0,m.length())
+                .mapToObj(it -> {
+                    StringBuilder builder = new StringBuilder(m);
+                    builder.setCharAt(it, Character.toUpperCase(m.charAt(it)));
+                    return builder.toString();
+                }).toList();
+    }
 }
